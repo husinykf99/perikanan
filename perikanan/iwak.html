@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Perikanan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('iwakkk.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #333;
+            padding: 20px;
+        }
+
+        header {
+            background-color: rgba(44, 62, 80, 0.9);
+            padding: 15px 0;
+            color: white;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            position: relative;
+        }
+
+        nav ul li {
+            position: relative;
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            display: block;
+        }
+
+        nav ul li a:hover {
+            background-color: #34495e;
+            border-radius: 5px;
+        }
+
+        /* Dropdown styling */
+        nav ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: rgba(44, 62, 80, 0.95);
+            list-style: none;
+            border-radius: 5px;
+            padding: 10px 0;
+        }
+
+        nav ul li ul li {
+            margin: 0;
+        }
+
+        nav ul li ul li a {
+            padding: 10px 20px;
+            white-space: nowrap;
+        }
+
+        nav ul li:hover ul {
+            display: block;
+        }
+
+        section {
+            padding: 40px 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        section .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        form label {
+            font-size: 1rem;
+        }
+
+        form input {
+            padding: 10px;
+            font-size: 1rem;
+            margin-top: 5px;
+            width: 50%;
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+        }
+
+        footer {
+            background-color: rgba(44, 62, 80, 0.9);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>PASAR IKAN ONLENG</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li>
+                        <a href="#informasi">Informasi</a>
+                        <ul>
+                            <li><a href="#sejarah">Sejarah Perikanan</a></li>
+                            <li><a href="#sumber">Sumber Daya Laut</a></li>
+                            <li><a href="#berkelanjutan">Cara Berkelanjutan</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#kalkulator">Kalkulator</a>
+                        <ul>
+                            <li><a href="#kalkulator">Berat Ikan</a></li>
+                            <li><a href="#tips">Tips Menimbang Ikan</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="container">
+            <h2>Selamat datang di Website Perikanan Indonesia!</h2>
+            <p>Website ini bertujuan untuk memberikan informasi seputar perikanan dan cara perikanan berkelanjutan di Indonesia.</p>
+        </div>
+    </section>
+
+    <section id="informasi">
+        <div class="container">
+            <h2>Informasi Perikanan</h2>
+            <p>Perikanan adalah sektor yang sangat penting di Indonesia. Sebagai negara kepulauan, Indonesia memiliki potensi sumber daya laut yang luar biasa. Namun, penting untuk mengelola perikanan secara berkelanjutan untuk melindungi ekosistem laut.</p>
+        </div>
+    </section>
+
+    <section id="kalkulator">
+        <div class="container">
+            <h2>Kalkulator Berat Ikan</h2>
+            <form id="fishForm">
+                <label for="length">Panjang Ikan (cm):</label>
+                <input type="number" id="length" name="length" required><br><br>
+                <label for="weight">Berat Ikan (kg):</label>
+                <input type="number" id="weight" name="weight" required><br><br>
+                <button type="button" onclick="calculateFishWeight()">Hitung</button>
+            </form>
+            <p id="result"></p>
+        </div>
+    </section>
+
+    <section id="kontak">
+        <div class="container">
+            <h2>Kontak</h2>
+            <p>Email kami di: <a href="mailto:info@perikananindonesia.com">info@perikananindonesia.com</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 husen bakul iwak.</p>
+        </div>
+    </footer>
+
+    <script>
+        function calculateFishWeight() {
+            const length = document.getElementById("length").value;
+            const weight = document.getElementById("weight").value;
+            const result = document.getElementById("result");
+
+            if (length && weight) {
+                const estimatedWeight = (length * weight) / 100; 
+                result.textContent = `Perkiraan Berat Ikan Berdasarkan Panjang: ${estimatedWeight.toFixed(2)} kg`;
+            } else {
+                result.textContent = "Harap masukkan panjang dan berat ikan!";
+            }
+        }
+    </script>
+</body>
+</html>
